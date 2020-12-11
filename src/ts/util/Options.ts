@@ -42,7 +42,7 @@ export class Options {
         outline: false,
         placeholder: "",
         preview: {
-            actions: ["desktop", "tablet", "mobile", "mp-wechat", "zhihu"],
+            actions: ["desktop", "tablet", "mobile", "mp-wechat", "zhihu", "test2d"],
             delay: 1000,
             hljs: Constants.HLJS_OPTIONS,
             markdown: Constants.MARKDOWN_OPTIONS,

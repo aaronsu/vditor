@@ -75,6 +75,9 @@ export class Preview {
                 case "zhihu":
                     actionHtml.push(`<button type="button" data-type="zhihu" class="vditor-tooltipped vditor-tooltipped__w" aria-label="复制到知乎"><svg><use xlink:href="#vditor-icon-zhihu"></use></svg></button>`);
                     break;
+                case "test2d":
+                    actionHtml.push(`<button type="button" data-type="test2d" class="vditor-tooltipped vditor-tooltipped__w" aria-label="测试2d效果"><svg><use xlink:href="#vditor-icon-test2d"></use></svg></button>`);
+                    break;
             }
         }
         actionElement.innerHTML = actionHtml.join("");
