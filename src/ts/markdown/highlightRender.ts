@@ -22,7 +22,6 @@ export const highlightRender = (hljsOption?: IHljs, element: HTMLElement | Docum
     if (hljsOption.enable === false) {
         return;
     }
-
     const codes = element.querySelectorAll("pre > code");
     if (codes.length === 0) {
         return;
