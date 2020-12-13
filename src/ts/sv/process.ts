@@ -7,8 +7,13 @@ import {log} from "../util/log";
 import {getEditorRange, setRangeByWbr} from "../util/selection";
 import {inputEvent} from "./inputEvent";
 
+/**
+ * 每一种模式都有自己的 process
+ * @param vditor
+ * @param text
+ */
 export const processPaste = (vditor: IVditor, text: string) => {
-    console.log("aaron==>process.ts==>processPaste==>");
+    console.log("aaron==>sv/process.ts==>processPaste==>");
     const range = getEditorRange(vditor.sv.element);
     range.extractContents();
     range.insertNode(document.createTextNode(Lute.Caret));
@@ -31,7 +36,7 @@ export const processPaste = (vditor: IVditor, text: string) => {
 };
 
 export const getSideByType = (spanNode: Node, type: string, isPrevious = true) => {
-    console.log("aaron==>process.ts==>getSideByType==>");
+    console.log("aaron==>sv/process.ts==>getSideByType==>");
 
     let sideElement = spanNode as Element;
     if (sideElement.nodeType === 3) {
@@ -51,17 +56,18 @@ export const getSideByType = (spanNode: Node, type: string, isPrevious = true) =
 };
 
 export const processSpinVditorSVDOM = (html: string, vditor: IVditor) => {
-    console.log("aaron==>process.ts==>processSpinVditorSVDOM==>");
+    console.log("aaron==>sv/process.ts==>processSpinVditorSVDOM==>");
     log("SpinVditorSVDOM", html, "argument", vditor.options.debugger);
     html = "<div data-block='0'>" +
         vditor.lute.SpinVditorSVDOM(html).replace(/<span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span><span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span></g, '<span data-type="newline"><br /><span style="display: none">\n</span></span><span data-type="newline"><br /><span style="display: none">\n</span></span></div><div data-block="0"><') +
         "</div>";
     log("SpinVditorSVDOM", html, "result", vditor.options.debugger);
+    console.log(`aaron==>sv/process.ts==>processSpinVditorSVDOM==>html::${html}`);
     return html;
 };
 
 export const processPreviousMarkers = (spanElement: HTMLElement) => {
-    console.log("aaron==>process.ts==>processPreviousMarkers==>");
+    console.log("aaron==>sv/process.ts==>processPreviousMarkers==>");
     const spanType = spanElement.getAttribute("data-type");
     let previousElement = spanElement.previousElementSibling;
     // 有内容的子列表/标题，在其 marker 后换行
@@ -141,7 +147,7 @@ export const processAfterRender = (vditor: IVditor, options = {
 };
 
 export const processHeading = (vditor: IVditor, value: string) => {
-    console.log("aaron==>process.ts==>processHeading==>");
+    console.log("aaron==>sv/process.ts==>processHeading==>");
     const range = getEditorRange(vditor.sv.element);
     const headingElement = hasClosestByTag(range.startContainer, "SPAN");
     if (headingElement && headingElement.textContent.trim() !== "") {
@@ -151,10 +157,10 @@ export const processHeading = (vditor: IVditor, value: string) => {
     document.execCommand("insertHTML", false, value);
 };
 export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: string, suffix: string) => {
-    console.log("aaron==>process.ts==>processToolbar==>");
+    console.log("aaron==>sv/process.ts==>processToolbar==>");
     const range = getEditorRange(vditor.sv.element);
     const commandName = actionBtn.getAttribute("data-type");
-    console.log(`aaron==>process.ts==>processToolbar==>commandName::${commandName}`);
+    console.log(`aaron==>sv/process.ts==>processToolbar==>commandName::${commandName}`);
     // 添加
     if (vditor.sv.element.childNodes.length === 0) {
         vditor.sv.element.innerHTML = `<span data-type="p" data-block="0"><span data-type="text"><wbr></span></span><span data-type="newline"><br><span style="display: none">
@@ -169,7 +175,7 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
 
     if (commandName === "title_title") {
         let html;
-        html = `${prefix}${range.toString()}${Lute.Caret}${ suffix}`;
+        html = `${prefix}${range.toString()}${Lute.Caret}${suffix}`;
         document.execCommand("insertHTML", false, html);
         return;
     } else if (commandName === "link") {

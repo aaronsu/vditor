@@ -121,7 +121,7 @@ export class Preview {
 
     public render(vditor: IVditor, value?: string) {
         clearTimeout(this.mdTimeoutId);
-
+        console.log(`aaron==>src/ts/preview/index.ts==>render==>value0::${value}`);
         if (this.element.style.display === "none") {
             if (this.element.getAttribute("data-type") === "renderPerformance") {
                 vditor.tip.hide();
@@ -133,15 +133,16 @@ export class Preview {
             this.element.lastElementChild.innerHTML = value;
             return;
         }
-
         if (getMarkdown(vditor)
             .replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "") === "") {
             this.element.lastElementChild.innerHTML = "";
+
             return;
         }
 
         const renderStartTime = new Date().getTime();
         const markdownText = getMarkdown(vditor);
+        console.log(`aaron==>src/ts/preview/index.ts==>render==>value1::${value}`);
         this.mdTimeoutId = window.setTimeout(() => {
             if (vditor.options.preview.url) {
                 const xhr = new XMLHttpRequest();
@@ -178,6 +179,7 @@ export class Preview {
                     html = vditor.options.preview.transform(html);
                 }
                 this.element.lastElementChild.innerHTML = html;
+                //真正渲染的地方
                 this.afterRender(vditor, renderStartTime);
             }
         }, vditor.options.preview.delay);
@@ -187,6 +189,7 @@ export class Preview {
         if (vditor.options.preview.parse) {
             vditor.options.preview.parse(this.element);
         }
+        console.log(`aaron==>src/ts/preview/index.ts==>afterRender==>element::${vditor.preview.element.lastElementChild}`);
         const time = (new Date().getTime() - startTime);
         if ((new Date().getTime() - startTime) > 2600) {
             // https://github.com/b3log/vditor/issues/67

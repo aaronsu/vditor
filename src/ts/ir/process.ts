@@ -8,6 +8,10 @@ import {getEditorRange, getSelectPosition, setRangeByWbr, setSelectionFocus} fro
 import {highlightToolbarIR} from "./highlightToolbarIR";
 import {input} from "./input";
 
+/**
+ * 即时渲染  process
+ * @param vditor
+ */
 export const processHint = (vditor: IVditor) => {
     vditor.hint.render(vditor);
     const startContainer = getEditorRange(vditor.ir.element).startContainer;
