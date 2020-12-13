@@ -99,7 +99,7 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
     const range = getEditorRange(vditor.wysiwyg.element);
 
     let commandName = actionBtn.getAttribute("data-type");
-    console.log(`aaron==>toolbarEvent.ts==>toolbarEvent::start`);
+    console.log(`aaron==>toolbarEvent.ts==>toolbarEvent==>commandName::${commandName}`);
     // 移除 标记
     if (actionBtn.classList.contains("vditor-menu--current")) {
         if (commandName === "strike") {
@@ -221,6 +221,32 @@ export const toolbarEvent = (vditor: IVditor, actionBtn: Element, event: Event) 
                 });
             actionBtn.classList.add("vditor-menu--disabled");
         } else if (commandName === "link") {
+            if (range.toString() === "") {
+                const aElement = document.createElement("a");
+                aElement.innerText = Constants.ZWSP;
+                range.insertNode(aElement);
+                range.setStart(aElement.firstChild, 1);
+                range.collapse(true);
+                genAPopover(vditor, aElement);
+                const textInputElement = vditor.wysiwyg.popover.querySelector("input");
+                textInputElement.value = "";
+                textInputElement.focus();
+                useRender = false;
+            } else {
+                const node = document.createElement("a");
+                node.setAttribute("href", "");
+                node.innerHTML = range.toString();
+                range.surroundContents(node);
+                range.insertNode(node);
+                setSelectionFocus(range);
+                genAPopover(vditor, node);
+                const textInputElements = vditor.wysiwyg.popover.querySelectorAll("input");
+                textInputElements[0].value = node.innerText;
+                textInputElements[1].focus();
+            }
+            useHighlight = false;
+            actionBtn.classList.add("vditor-menu--current");
+        } else if (commandName === "title_title") {
             if (range.toString() === "") {
                 const aElement = document.createElement("a");
                 aElement.innerText = Constants.ZWSP;

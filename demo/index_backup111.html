@@ -83,21 +83,34 @@
 </div>
 <div id="vditor">
   <h1>Vditor</h1>
-  <ul>
-    <li>foo</li>
-    <li>bar</li>
-  </ul>
 </div>
 
 <div id="graph"></div>
-
 <script type="text/jsx">
-  fetch('./datasets/miserables.json').then(res => res.json()).then(data => {
-    console.log(`aaron==>${JSON.stringify(data)}`)
-    console.log(`aaron==>${typeof (data) }`)
+  var key = `data_key`
+  var _data = window.localStorage.getItem(key)
+  if (!_data) {
+    console.log(`aaron==>has no data`)
+    fetch('./datasets/miserables.json').then(res => res.json()).then(data => {
+      _data = data
+      window.localStorage.setItem(key, JSON.stringify(_data))
+      ReactDOM.render(
+          <ForceGraph2D
+              graphData={data}
+              nodeLabel="id"
+              nodeAutoColorBy="group"
+              linkDirectionalParticles="value"
+              linkDirectionalParticleSpeed={d => d.value * 0.001}
+          />,
+          document.getElementById('graph')
+      );
+    });
+  } else {
+    console.log(`aaron==>has data`)
+    // var data =  window.localStorage.getItem(key, JSON.stringify(data));
     ReactDOM.render(
         <ForceGraph2D
-            graphData={data}
+            graphData={_data}
             nodeLabel="id"
             nodeAutoColorBy="group"
             linkDirectionalParticles="value"
@@ -105,7 +118,10 @@
         />,
         document.getElementById('graph')
     );
-  });
+
+  }
+
+
 </script>
 </body>
 </html>

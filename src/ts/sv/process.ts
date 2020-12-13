@@ -154,6 +154,7 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
     console.log("aaron==>process.ts==>processToolbar==>");
     const range = getEditorRange(vditor.sv.element);
     const commandName = actionBtn.getAttribute("data-type");
+    console.log(`aaron==>process.ts==>processToolbar==>commandName::${commandName}`);
     // 添加
     if (vditor.sv.element.childNodes.length === 0) {
         vditor.sv.element.innerHTML = `<span data-type="p" data-block="0"><span data-type="text"><wbr></span></span><span data-type="newline"><br><span style="display: none">
@@ -166,7 +167,7 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
         return;
     }
 
-    if (commandName === "link") {
+    if (commandName === "title_title") {
         let html;
         if (range.toString() === "") {
             html = `${prefix}${Lute.Caret}${suffix}`;
@@ -175,7 +176,16 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
         }
         document.execCommand("insertHTML", false, html);
         return;
-    } else if (commandName === "italic" || commandName === "bold" || commandName === "strike" ||
+    }else if (commandName === "link") {
+        let html;
+        if (range.toString() === "") {
+            html = `${prefix}${Lute.Caret}${suffix}`;
+        } else {
+            html = `${prefix}${range.toString()}${suffix.replace(")", Lute.Caret + ")")}`;
+        }
+        document.execCommand("insertHTML", false, html);
+        return;
+    }  else if (commandName === "italic" || commandName === "bold" || commandName === "strike" ||
         commandName === "inline-code" || commandName === "code" || commandName === "table" || commandName === "line") {
         let html;
         // https://github.com/Vanessa219/vditor/issues/563 代码块不需要后面的 ```

@@ -61,7 +61,7 @@ export const processCodeRender = (previewPanel: HTMLElement, vditor: IVditor) =>
         return;
     }
     const language = previewPanel.firstElementChild.className.replace("language-", "");
-    console.log(`aaron==>processCode.ts==>processCodeRender::language:${language}  \ncnd::${vditor.options.cdn}`);
+    console.log(`aaron==>processCode.ts==>processCodeRender::language:${language}`);
     if (!language) {
         return;
     }
