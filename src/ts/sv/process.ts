@@ -169,14 +169,10 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
 
     if (commandName === "title_title") {
         let html;
-        if (range.toString() === "") {
-            html = `${prefix}${Lute.Caret}${suffix}`;
-        } else {
-            html = `${prefix}${range.toString()}${suffix.replace(")", Lute.Caret + ")")}`;
-        }
+        html = `${prefix}${range.toString()}${Lute.Caret}${ suffix}`;
         document.execCommand("insertHTML", false, html);
         return;
-    }else if (commandName === "link") {
+    } else if (commandName === "link") {
         let html;
         if (range.toString() === "") {
             html = `${prefix}${Lute.Caret}${suffix}`;
