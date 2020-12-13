@@ -15,6 +15,7 @@ export const afterRenderEvent = (vditor: IVditor, options = {
             return;
         }
         const text = getMarkdown(vditor);
+        console.log(`aaron==>afterRenderEvent.ts==>afterRenderEvent::text:: \n${text}`);
         if (typeof vditor.options.input === "function" && options.enableInput) {
             vditor.options.input(text);
         }

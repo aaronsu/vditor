@@ -10,7 +10,14 @@ import {renderToc} from "../util/toc";
 import {afterRenderEvent} from "./afterRenderEvent";
 import {previoueIsEmptyA} from "./inlineTag";
 
+/**
+ * 输入监听
+ * @param vditor
+ * @param range
+ * @param event
+ */
 export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
+    console.log(`aaron==>wysiwyg==>input.ts==>input::start`);
     let blockElement = hasClosestBlock(range.startContainer);
 
     if (!blockElement) {
@@ -189,7 +196,7 @@ export const input = (vditor: IVditor, range: Range, event?: InputEvent) => {
 
         // 设置光标
         setRangeByWbr(vditor.wysiwyg.element, range);
-
+        //查找预览element 进行渲染
         vditor.wysiwyg.element.querySelectorAll(".vditor-wysiwyg__preview[data-render='2']")
             .forEach((item: HTMLElement) => {
                 processCodeRender(item, vditor);

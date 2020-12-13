@@ -61,12 +61,13 @@ export const processCodeRender = (previewPanel: HTMLElement, vditor: IVditor) =>
         return;
     }
     const language = previewPanel.firstElementChild.className.replace("language-", "");
+    console.log(`aaron==>processCode.ts==>processCodeRender::language:${language}  \ncnd::${vditor.options.cdn}`);
     if (!language) {
         return;
     }
     if (language === "abc") {
         abcRender(previewPanel, vditor.options.cdn);
-    } else if (language === "mermaid") {
+    } else if (language === "mermaid") {//甘特图
         mermaidRender(previewPanel, vditor.options.cdn, vditor.options.theme);
     } else if (language === "flowchart") {
         flowchartRender(previewPanel, vditor.options.cdn);

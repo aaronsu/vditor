@@ -301,8 +301,11 @@ class Vditor extends VditorMethod {
             }
         }
     }
-
-    /** 设置编辑器内容 */
+    /**
+     * 设置编辑器内容
+     * @param markdown
+     * @param clearStack
+     */
     public setValue(markdown: string, clearStack = false) {
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.innerHTML = this.vditor.lute.SpinVditorSVDOM(markdown);

@@ -37,7 +37,7 @@ export class Toolbar {
 
         this.element = document.createElement("div");
         this.element.className = "vditor-toolbar";
-
+        console.log("aaron==>Toolbar==>constructor::", JSON.stringify(options.toolbar));
         options.toolbar.forEach((menuItem: IMenuItem, i: number) => {
             const itemElement = this.genItem(vditor, menuItem, i);
             this.element.appendChild(itemElement);

@@ -60,6 +60,7 @@ export class Options {
             "emoji",
             "headings",
             "bold",
+            "test",
             "italic",
             "strike",
             "link",
@@ -166,14 +167,24 @@ export class Options {
             icon: '<svg><use xlink:href="#vditor-icon-headings"></use></svg>',
             name: "headings",
             tipPosition: "ne",
-        }, {
+        },
+          {
             hotkey: "⌘-B",
             icon: '<svg><use xlink:href="#vditor-icon-bold"></use></svg>',
             name: "bold",
             prefix: "**",
             suffix: "**",
             tipPosition: "ne",
-        }, {
+        },
+
+          {
+            hotkey: "⌘-|",
+            icon: '<svg><use xlink:href="#vditor-icon-italic"></use></svg>',
+            name: "test",
+            prefix: "**",
+            suffix: "**",
+            tipPosition: "ne",
+          }, {
             hotkey: "⌘-I",
             icon: '<svg><use xlink:href="#vditor-icon-italic"></use></svg>',
             name: "italic",

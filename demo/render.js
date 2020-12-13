@@ -12,7 +12,6 @@ const render = (fileName) => {
   fetch(`/demo/markdown/${fileName}.md`).
     then(response => response.text()).
     then(markdown => {
-    console.log(`aaron  this is renderjs ->render`)
       Vditor.preview(document.getElementById('preview'),
         markdown, {
           markdown: {

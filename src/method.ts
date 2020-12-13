@@ -37,6 +37,10 @@ class Vditor {
   public static mindmapRender = mindmapRender;
   /** 大纲渲染 */
   public static outlineRender = outlineRender;
+  /**
+   * 定向粒子渲染
+   */
+  public static linksParticles = outlineRender;
   /** 为[特定链接](https://github.com/Vanessa219/vditor/issues/7)分别渲染为视频、音频、嵌入的 iframe */
   public static mediaRender = mediaRender;
   /** 对选中的文字进行阅读 */

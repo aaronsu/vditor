@@ -236,7 +236,13 @@ class WYSIWYG {
         event.clipboardData.setData("text/html", "");
     }
 
+    /**
+     * 绑定即时渲染 涉及的事件,,滚动..粘贴等..输入→其他地方处理
+     * @param vditor
+     * @private
+     */
     private bindEvent(vditor: IVditor) {
+        console.log(`aaron==>wysiwyg/index.ts==>bindEvent::start`);
         window.addEventListener("scroll", () => {
             hidePanel(vditor, ["hint"]);
             if (this.popover.style.display !== "block" || this.selectPopover.style.display !== "block") {

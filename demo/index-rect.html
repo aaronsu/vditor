@@ -1,7 +1,5 @@
 <head>
-  <style> body {
-    margin: 0;
-  } </style>
+  <style> body { margin: 0; } </style>
 
   <script src="//unpkg.com/react@16/umd/react.production.min.js"></script>
   <script src="//unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
@@ -16,30 +14,12 @@
 <div id="graph"></div>
 
 <script type="text/jsx">
-  var key = `data_key`
-  var _data = window.localStorage.getItem(key)
-  if (!_data) {
-    console.log(`aaron==>has no data`)
-    fetch('./datasets/miserables.json').then(res => res.json()).then(data => {
-      _data = data
-      window.localStorage.setItem(key, JSON.stringify(_data))
-      ReactDOM.render(
-          <ForceGraph2D
-              graphData={data}
-              nodeLabel="id"
-              nodeAutoColorBy="group"
-              linkDirectionalParticles="value"
-              linkDirectionalParticleSpeed={d => d.value * 0.001}
-          />,
-          document.getElementById('graph')
-      );
-    });
-  } else {
-    console.log(`aaron==>has data`)
-    // var data =  window.localStorage.getItem(key, JSON.stringify(data));
+  fetch('./datasets/miserables.json').then(res => res.json()).then(data => {
+    window.location
+    console.log(`aaron data ${JSON.stringify(data)}`);
     ReactDOM.render(
         <ForceGraph2D
-            graphData={_data}
+            graphData={data}
             nodeLabel="id"
             nodeAutoColorBy="group"
             linkDirectionalParticles="value"
@@ -47,9 +27,6 @@
         />,
         document.getElementById('graph')
     );
-
-  }
-
-
+  });
 </script>
 </body>

@@ -8,6 +8,7 @@ import {getEditorRange, setRangeByWbr} from "../util/selection";
 import {inputEvent} from "./inputEvent";
 
 export const processPaste = (vditor: IVditor, text: string) => {
+    console.log("aaron==>process.ts==>processPaste==>");
     const range = getEditorRange(vditor.sv.element);
     range.extractContents();
     range.insertNode(document.createTextNode(Lute.Caret));
@@ -30,6 +31,8 @@ export const processPaste = (vditor: IVditor, text: string) => {
 };
 
 export const getSideByType = (spanNode: Node, type: string, isPrevious = true) => {
+    console.log("aaron==>process.ts==>getSideByType==>");
+
     let sideElement = spanNode as Element;
     if (sideElement.nodeType === 3) {
         sideElement = sideElement.parentElement;
@@ -48,6 +51,7 @@ export const getSideByType = (spanNode: Node, type: string, isPrevious = true) =
 };
 
 export const processSpinVditorSVDOM = (html: string, vditor: IVditor) => {
+    console.log("aaron==>process.ts==>processSpinVditorSVDOM==>");
     log("SpinVditorSVDOM", html, "argument", vditor.options.debugger);
     html = "<div data-block='0'>" +
         vditor.lute.SpinVditorSVDOM(html).replace(/<span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span><span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span></g, '<span data-type="newline"><br /><span style="display: none">\n</span></span><span data-type="newline"><br /><span style="display: none">\n</span></span></div><div data-block="0"><') +
@@ -57,6 +61,7 @@ export const processSpinVditorSVDOM = (html: string, vditor: IVditor) => {
 };
 
 export const processPreviousMarkers = (spanElement: HTMLElement) => {
+    console.log("aaron==>process.ts==>processPreviousMarkers==>");
     const spanType = spanElement.getAttribute("data-type");
     let previousElement = spanElement.previousElementSibling;
     // 有内容的子列表/标题，在其 marker 后换行
@@ -136,6 +141,7 @@ export const processAfterRender = (vditor: IVditor, options = {
 };
 
 export const processHeading = (vditor: IVditor, value: string) => {
+    console.log("aaron==>process.ts==>processHeading==>");
     const range = getEditorRange(vditor.sv.element);
     const headingElement = hasClosestByTag(range.startContainer, "SPAN");
     if (headingElement && headingElement.textContent.trim() !== "") {
@@ -144,8 +150,8 @@ export const processHeading = (vditor: IVditor, value: string) => {
     range.collapse(true);
     document.execCommand("insertHTML", false, value);
 };
-
 export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: string, suffix: string) => {
+    console.log("aaron==>process.ts==>processToolbar==>");
     const range = getEditorRange(vditor.sv.element);
     const commandName = actionBtn.getAttribute("data-type");
     // 添加
@@ -159,6 +165,7 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
     if (!blockElement) {
         return;
     }
+
     if (commandName === "link") {
         let html;
         if (range.toString() === "") {
@@ -182,6 +189,7 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
         } else if (commandName === "line") {
             html = `\n\n${prefix}\n${Lute.Caret}`;
         }
+
         document.execCommand("insertHTML", false, html);
         return;
     } else if (commandName === "check" || commandName === "list" || commandName === "ordered-list" ||
