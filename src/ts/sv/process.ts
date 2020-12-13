@@ -115,7 +115,7 @@ export const processAfterRender = (vditor: IVditor, options = {
     if (options.enableHint) {
         vditor.hint.render(vditor);
     }
-
+    console.log("aaron==>sv/process.ts==>processAfterRender");
     vditor.preview.render(vditor);
 
     const text = getMarkdown(vditor);

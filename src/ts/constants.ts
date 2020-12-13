@@ -5,6 +5,7 @@ const _VDITOR_VERSION = VDITOR_VERSION;
 export {_VDITOR_VERSION as VDITOR_VERSION};
 
 export abstract class Constants {
+    //空字符串
     public static readonly ZWSP: string = "\u200b";
     public static readonly MOBILE_WIDTH: number = 520;
     public static readonly CLASS_MENU_DISABLED: string = "vditor-menu--disabled";
