@@ -2,8 +2,10 @@ import {scrollCenter} from "../util/editorCommonEvent";
 import {hasClosestByAttribute} from "../util/hasClosest";
 import {getSelectPosition, setRangeByWbr} from "../util/selection";
 import {getSideByType, processAfterRender, processSpinVditorSVDOM} from "./process";
+import {alog} from "../util/log";
 
 export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
+    alog(`===============inputEvent`);
     const range = getSelection().getRangeAt(0).cloneRange();
     let startContainer = range.startContainer;
     if (range.startContainer.nodeType !== 3 && (range.startContainer as HTMLElement).tagName === "DIV") {
@@ -128,7 +130,7 @@ export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
             html = blockElement.previousElementSibling.textContent + html;
             blockElement.previousElementSibling.remove();
         }
-
+        alog(`aaron==>sv/InputEvent.ts==>InputEvent==>isSVElement= else ::${JSON.stringify(vditor.sv.element)}`);
         // 添加链接引用
         vditor.sv.element.querySelectorAll("[data-type='link-ref-defs-block']").forEach((item, index) => {
             if (index === 0 && item && !(blockElement as HTMLElement).isEqualNode(item.parentElement)) {
@@ -153,6 +155,7 @@ export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
     }
 
     let firstLinkRefDefElement: Element;
+    // sldkjflsdkjflsdkjflds  这个比地方进行的转换 是通过 css 选择器
     const allLinkRefDefsElement = vditor.sv.element.querySelectorAll("[data-type='link-ref-defs-block']");
     allLinkRefDefsElement.forEach((item, index) => {
         if (index === 0) {

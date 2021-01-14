@@ -6,7 +6,7 @@ import {
     hasClosestByClassName,
 } from "../util/hasClosest";
 import {hasClosestByTag} from "../util/hasClosestByHeadings";
-import {log} from "../util/log";
+import {alog, log} from "../util/log";
 import {processCodeRender} from "../util/processCode";
 import {getSelectPosition, setRangeByWbr} from "../util/selection";
 import {renderToc} from "../util/toc";
@@ -67,7 +67,7 @@ export const input = (vditor: IVditor, range: Range, ignoreSpace = false, event?
             }
         }
     }
-
+    alog("====================1111");
     vditor.ir.element.querySelectorAll(".vditor-ir__node--expand").forEach((item) => {
         item.classList.remove("vditor-ir__node--expand");
     });

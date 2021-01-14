@@ -5,6 +5,7 @@
     "module": "esnext",
     "target": "es5",
     "noUnusedLocals": true,
+    "sourceMap": true,
     "lib": [
       "dom",
       "ESNext"

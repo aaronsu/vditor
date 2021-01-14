@@ -56,13 +56,13 @@ export const getSideByType = (spanNode: Node, type: string, isPrevious = true) =
 };
 
 export const processSpinVditorSVDOM = (html: string, vditor: IVditor) => {
-    console.log("aaron==>sv/process.ts==>processSpinVditorSVDOM==>");
+    console.log(`aaron==>sv/process.ts==>processSpinVditorSVDOM==> start html::\n${html}`);
     log("SpinVditorSVDOM", html, "argument", vditor.options.debugger);
     html = "<div data-block='0'>" +
         vditor.lute.SpinVditorSVDOM(html).replace(/<span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span><span data-type="newline"><br \/><span style="display: none">\n<\/span><\/span></g, '<span data-type="newline"><br /><span style="display: none">\n</span></span><span data-type="newline"><br /><span style="display: none">\n</span></span></div><div data-block="0"><') +
         "</div>";
     log("SpinVditorSVDOM", html, "result", vditor.options.debugger);
-    console.log(`aaron==>sv/process.ts==>processSpinVditorSVDOM==>html::${html}`);
+    console.log(`aaron==>sv/process.ts==>processSpinVditorSVDOM==> end html ::\n${html}`);
     return html;
 };
 
@@ -201,7 +201,6 @@ export const processToolbar = (vditor: IVditor, actionBtn: Element, prefix: stri
         } else if (commandName === "line") {
             html = `\n\n${prefix}\n${Lute.Caret}`;
         }
-
         document.execCommand("insertHTML", false, html);
         return;
     } else if (commandName === "check" || commandName === "list" || commandName === "ordered-list" ||

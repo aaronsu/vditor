@@ -35,6 +35,7 @@ import {WYSIWYG} from "./ts/wysiwyg";
 import {afterRenderEvent} from "./ts/wysiwyg/afterRenderEvent";
 import {input} from "./ts/wysiwyg/input";
 import {renderDomByMd} from "./ts/wysiwyg/renderDomByMd";
+import {alog} from "./ts/util/log";
 
 class Vditor extends VditorMethod {
 
@@ -283,17 +284,20 @@ class Vditor extends VditorMethod {
         // https://github.com/Vanessa219/vditor/issues/716 需使用 insertText，否则需要重写方法，不能使用 execCommand
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.preventInput = true;
+            alog(`aaron===========${value}`);
             document.execCommand("insertText", false, value);
             if (render) {
                 inputEvent(this.vditor);
             }
         } else if (this.vditor.currentMode === "wysiwyg") {
             this.vditor.wysiwyg.preventInput = true;
+            alog(`aaron===========${value}`);
             document.execCommand("insertText", false, value);
             if (render) {
                 input(this.vditor, getSelection().getRangeAt(0));
             }
         } else if (this.vditor.currentMode === "ir") {
+            alog(`aaron===========${value}`);
             this.vditor.ir.preventInput = true;
             document.execCommand("insertText", false, value);
             if (render) {
@@ -307,6 +311,7 @@ class Vditor extends VditorMethod {
      * @param clearStack
      */
     public setValue(markdown: string, clearStack = false) {
+        alog("====================");
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.innerHTML = this.vditor.lute.SpinVditorSVDOM(markdown);
             processSVAfterRender(this.vditor, {

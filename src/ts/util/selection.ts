@@ -1,6 +1,7 @@
 import {Constants} from "../constants";
 import {isChrome} from "./compatibility";
 import {hasClosestBlock, hasClosestByClassName} from "./hasClosest";
+import {alog} from "./log";
 
 export const getEditorRange = (element: HTMLElement) => {
     let range: Range;
@@ -233,6 +234,7 @@ export const setRangeByWbr = (element: HTMLElement, range: Range) => {
 
 export const insertHTML = (html: string, vditor: IVditor) => {
     // 使用 lute 方法会添加 p 元素，只有一个 p 元素的时候进行删除
+    alog("aaron==>util/selection.ts==>insertHTML==>");
     const tempElement = document.createElement("div");
     tempElement.innerHTML = html;
     const tempBlockElement = tempElement.querySelectorAll("p");
