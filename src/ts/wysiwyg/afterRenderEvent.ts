@@ -15,12 +15,11 @@ export const afterRenderEvent = (vditor: IVditor, options = {
             return;
         }
         const text = getMarkdown(vditor);
-        console.log(`aaron==>afterRenderEvent.ts==>afterRenderEvent::text:: \n 渲染文本内容`);
+        console.log(`aaron==>afterRenderEvent.ts==>wysiwyg==>afterRenderEvent::getMarkdown::text:: \n ${text}`);
         // console.log(`aaron==>afterRenderEvent.ts==>afterRenderEvent::text:: \n${text}`);
         if (typeof vditor.options.input === "function" && options.enableInput) {
             vditor.options.input(text);
         }
-
         if (vditor.options.counter.enable) {
             vditor.counter.render(vditor, text);
         }

@@ -180,7 +180,7 @@ export const setSelectionByPosition = (start: number, end: number, editor: HTMLE
     setSelectionFocus(range);
     return range;
 };
-
+//目测是渲染完之后将光标至于最后 或者说合适的位置
 export const setRangeByWbr = (element: HTMLElement, range: Range) => {
     const wbrElement = element.querySelector("wbr");
     if (!wbrElement) {

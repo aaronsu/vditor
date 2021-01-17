@@ -624,6 +624,7 @@ interface IVditor {
         recordFirstPosition(vditor: IVditor, event: KeyboardEvent): void,
         resetIcon(vditor: IVditor): void,
     };
+    //所见即所得
     wysiwyg?: {
         element: HTMLPreElement,
         selectPopover: HTMLDivElement,

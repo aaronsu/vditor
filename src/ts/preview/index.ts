@@ -136,13 +136,13 @@ export class Preview {
     if (getMarkdown(vditor)
         .replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "") === "") {
       this.element.lastElementChild.innerHTML = "";
-
       return;
     }
 
     const renderStartTime = new Date().getTime();
     const markdownText = getMarkdown(vditor);
-    console.log(`aaron==>src/ts/preview/index.ts==>render==>value1::${value}`);
+
+    console.log(`aaron==>src/ts/preview/index.ts==>render==>markdownText::${markdownText}`);
     this.mdTimeoutId = window.setTimeout(() => {
       if (vditor.options.preview.url) {
         const xhr = new XMLHttpRequest();
@@ -179,6 +179,7 @@ export class Preview {
           html = vditor.options.preview.transform(html);
         }
         this.element.lastElementChild.innerHTML = html;
+        console.log(`aaron==>src/ts/preview/index.ts==>render==>this.element::${this.element.outerHTML}`);
         //真正渲染的地方
         this.afterRender(vditor, renderStartTime);
       }
@@ -190,7 +191,9 @@ export class Preview {
       vditor.options.preview.parse(this.element);
     }
     // vditor.preview.element.lastElementChild
-    console.log(`aaron==>src/ts/preview/index.ts==>afterRender==>element::${JSON.stringify(vditor.preview.element)}`);
+    console.log(`aaron==>src/ts/preview/index.ts==>afterRender==>element==>innerHTML\n::${vditor.preview.element.innerHTML}`);
+    console.log(`aaron==>src/ts/preview/index.ts==>afterRender==>element==>innerText\n::${vditor.preview.element.innerText}`);
+    console.log(`aaron==>src/ts/preview/index.ts==>afterRender==>element==>outerHTML\n::${vditor.preview.element.outerHTML}`);
 
     // let sssss = JSON.stringify(vditor, function(key, value) {
     //     if (typeof value === 'object' && value !== null) {

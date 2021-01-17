@@ -155,8 +155,8 @@ export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
     }
 
     let firstLinkRefDefElement: Element;
-    // sldkjflsdkjflsdkjflds  这个比地方进行的转换 是通过 css 选择器
     const allLinkRefDefsElement = vditor.sv.element.querySelectorAll("[data-type='link-ref-defs-block']");
+    alog(`aaron==>sv/InputEvent.ts==>InputEvent==>isSVElement  ssss: ${vditor.sv.element.innerText}`);
     allLinkRefDefsElement.forEach((item, index) => {
         if (index === 0) {
             firstLinkRefDefElement = item.parentElement;
@@ -178,13 +178,14 @@ export const inputEvent = (vditor: IVditor, event?: InputEvent) => {
             firstFootnoteElement = item.parentElement;
         } else {
             firstFootnoteElement.lastElementChild.remove();
-            firstFootnoteElement.insertAdjacentHTML("beforeend", `${item.parentElement.innerHTML}`);
+            firstFootnoteElement.insertAdjacentHTML("beforeend", `${item.parentElement.outerHTML}`);
             item.parentElement.remove();
         }
     });
     if (allFootnoteElement.length > 0) {
         vditor.sv.element.insertAdjacentElement("beforeend", firstFootnoteElement);
     }
+    alog(`aaron==>sv/InputEvent.ts==>InputEvent==>isSVElement  ssss111: ${vditor.sv.element.outerHTML}`);
 
     setRangeByWbr(vditor.sv.element, range);
 

@@ -67,7 +67,8 @@ export const input = (vditor: IVditor, range: Range, ignoreSpace = false, event?
             }
         }
     }
-    alog("====================1111");
+    alog(`aaron==>ir/input.ts==>方法内::`);
+
     vditor.ir.element.querySelectorAll(".vditor-ir__node--expand").forEach((item) => {
         item.classList.remove("vditor-ir__node--expand");
     });

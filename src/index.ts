@@ -246,6 +246,7 @@ class Vditor extends VditorMethod {
 
     /** HTML 转 md */
     public html2md(value: string) {
+
         return this.vditor.lute.HTML2Md(value);
     }
 
@@ -311,7 +312,8 @@ class Vditor extends VditorMethod {
      * @param clearStack
      */
     public setValue(markdown: string, clearStack = false) {
-        alog("====================");
+        alog(`aaron==>src/index.ts==>setValue==>markdown:: ${markdown}`);
+
         if (this.vditor.currentMode === "sv") {
             this.vditor.sv.element.innerHTML = this.vditor.lute.SpinVditorSVDOM(markdown);
             processSVAfterRender(this.vditor, {
